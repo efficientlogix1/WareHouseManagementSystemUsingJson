@@ -1,0 +1,106 @@
+﻿@model WareHouseManagementSystem.Models.CategoryDetailViewModel
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Delete Category</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Category</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Delete</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Delete">
+                        <div class="card-body">
+                            @if (ViewBag.ErrMsg != null)
+                            {
+                                <p style="color:red">@ViewBag.ErrMsg</p> // shows error msg
+                            }
+                            <div class="form-group">
+                                <input asp-for="Id" type="hidden" class="form-control" id="exampleInputEmail1" placeholder="ID" required> @*ID field*@
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input asp-for="Name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" readonly> @*name field*@
+                            </div>
+                            <h2>Product Details</h2> @*// shows product details heading*@
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>              @*// one of product page item as table  heading
+*@                                        <th>Name</th>            @*// one of product page item as table heading
+*@                                        <th>Quantity</th>        @*// one of product page item as table heading
+*@                                        <th>Unit of Measure</th> @*// one of product page item as table heading
+*@                                        <th>Price</th>           @*// one of product page item as table heading
+*@                                        <th>Action</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <tr>
+                                            <td>@item.Code</td> 
+                                            <td>@item.Name</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Measure</td>
+                                            <td>@item.Price</td>
+                                            <td>
+                                                <a href="/Product/Edit?id=@item.Id">Edit</a>|      @*redirect to edit page*@
+                                                <a href="/Product/Details?id=@item.Id">Details</a>| @*redirect to details page*@
+                                                <a href="/Product/Delete?id=@item.Id">Delete</a>   @*redirect to delete page*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                       
+                        <div class="card-footer">
+                            <button type="submit" value="Save" class="btn btn-primary">Confirm</button> @*// confirm button*@
+                            <a class="btn btn-primary" asp-action="Index">Back to List</a>@* // redirect to index page*@
+                        </div>
+
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts{
+
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+}

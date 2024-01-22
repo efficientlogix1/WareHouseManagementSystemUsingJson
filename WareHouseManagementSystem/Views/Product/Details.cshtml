@@ -1,0 +1,80 @@
+﻿@model WareHouseManagementSystem.Models.Product
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Product Details</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Product</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Details</h3>@* // main heading*@
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                            <input asp-for="Id" type="hidden" class="form-control" id="exampleInputEmail1" placeholder="ID" readonly> @*//ID field*@
+                        </div>
+                            <div class="form-group">
+                                <label>Code</label>
+                            <input asp-for="Code" type="text" class="form-control" id="exampleInputPassword1" placeholder="Code" readonly> @*//code field*@
+                        </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                            <input asp-for="Name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" readonly> @*//name field*@
+                        </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                            <input asp-for="Description" type="text" class="form-control" id="exampleInputPassword1" placeholder="Description" readonly> @*//description field*@
+                        </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                               <select asp-for="Category" class="form-control" asp-items="@( new SelectList(@ViewBag.list, "Id","Name"))" disabled> @*// category dropdown list*@
+                                    <option>--Select Category--</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                            <input asp-for="Quantity" type="number" class="form-control" id="exampleInputPassword1" placeholder="Quantity" readonly> @*//qunatity field*@
+                        </div>
+                            <div class="form-group">
+                                <label>Measure</label>
+                            <select asp-for="Measure" class="form-control" disabled>
+                               @* // measure field in kg ltr and pcs*@
+                                    <option>--Select Unit--</option>
+                                    <option value="kg">kg</option>
+                                    <option value="pcs">pcs</option>
+                                    <option value="litre">litre</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input asp-for="Price" type="number" class="form-control" id="exampleInputPassword1" placeholder="Price" readonly> @*// price field*@
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" asp-action="Index">Back to List</a> @*// redirect to index page*@
+                        </div>
+                    
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>

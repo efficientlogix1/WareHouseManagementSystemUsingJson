@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WareHouseManagementSystem.Models.Product>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Product</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Product</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Product List</h3> @*// main heading*@
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="Product" asp-action="Create" class="btn btn-primary">Add Product</a> @*//add  product button*@
+                        <br /><br /> @*// one line space*@
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>           @* table heading*@
+                                    <th>Name</th>           @* table heading*@
+                                    <th>Quantity</th>       @* table heading*@
+                                    <th>Unit of Measure</th>@* table heading*@
+                                    <th>Price</th>          @* table heading*@
+                                    <th>Created On</th>          @* table heading*@
+                                    <th>Edit On</th>          @* table heading*@
+                                    <th>Action</th>         @* table heading*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    string editOn = item.EditOn == null ? "" : item.EditOn.Value.ToString("hh:mm tt dd MMM,yyyy");
+                                    <tr>
+                                        <td>@item.Code</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.Measure</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.CreatedOn.ToString("hh:mm tt dd MMM,yyyy")</td>
+                                        <td>@editOn</td>
+                                        <td>
+                                            <a href="/Product/Edit?id=@item.Id">Edit</a>| @* redirect to edit page
+*@                                            <a href="/Product/Details?id=@item.Id">Details</a>| @*// redirect to details page*@
+                                            <a href="/Product/Delete?id=@item.Id">Delete</a>      @*// redirect to delete page*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+
+    
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+}

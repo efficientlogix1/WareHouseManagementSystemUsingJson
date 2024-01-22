@@ -1,0 +1,86 @@
+﻿@model WareHouseManagementSystem.Models.Product
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Edit Product</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Product</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit</h3> @*// main heading*@
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Edit">
+                        <div class="card-body">
+                            @if (ViewBag.ErrMsg != null)
+                            {
+                                <p style="color:red">@ViewBag.ErrMsg</p>
+                                @* shows error msg*@
+                            }
+                            <div class="form-group">
+                                <input asp-for="Id" type="hidden" class="form-control" id="exampleInputEmail1" placeholder="ID" required>@* // ID field*@
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Code</label>
+                                <input asp-for="Code" type="text" class="form-control" id="exampleInputPassword1" maxlength="8" placeholder="Code" required> @*// code field*@
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Name</label>
+                                <input asp-for="Name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" maxlength="16" required> @*// name field*@
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Description</label>
+                                <input asp-for="Description" type="text" class="form-control" id="exampleInputPassword1" placeholder="Description" required>@* // description field*@
+                            </div>
+                            <div class="form-group">
+                                <label>Select Category</label>
+                                <select asp-for="Category" class="form-control" asp-items="@( new SelectList(@ViewBag.list, "Id","Name"))" required> @*// category dropdown list*@
+                                    <option>--Select Category--</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Quantity</label>
+                                <input asp-for="Quantity" type="number" class="form-control" id="exampleInputPassword1" placeholder="Quantity" required> @*// quantity field*@
+                            </div>
+                            <div class="form-group">
+                                <label>Select Unit of Measure</label>
+                                <select asp-for="Measure" class="form-control" required>
+                                    @* // measure field in kg ltr and pcs*@
+                                    <option>--Select Unit--</option>
+                                    <option value="kg">kg</option>
+                                    <option value="pcs">pcs</option>
+                                    <option value="litre">litre</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Price</label>
+                                <input asp-for="Price" type="number" class="form-control" id="exampleInputPassword1" placeholder="Price" required> 
+                            </div> @*// price field*@
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" value="Save" class="btn btn-primary">Save Changes</button> @*// save changes button*@
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>

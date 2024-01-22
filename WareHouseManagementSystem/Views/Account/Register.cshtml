@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+@model WareHouseManagementSystem.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WareHouse Management system</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Assets/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="../../index2.html">WMS</a> @*//heading*@
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                @if (ViewBag.ErrMsg != null)
+                {
+                    <p style="color:red">@ViewBag.ErrMsg</p> // shows error msg
+                }
+
+                <p class="login-box-msg">Register a new membership</p> @*// heading for register a membership*@
+                <form asp-action="Register">
+                    <div class="input-group mb-3">
+                        <input asp-for="Username" type="text" class="form-control" placeholder="User Name"> @*// shows user name input field  *@
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password"> @*// shows password input field*@
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                       
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button> @*// register button*@
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <a asp-area="" asp-controller="Account" asp-action="SignIn" class="text-center">I already have a membership</a>
+            </div> @*redirects to signin page*@
+
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Assets/dist/js/adminlte.min.js"></script>
+</body>
+</html>
